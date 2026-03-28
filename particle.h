@@ -19,6 +19,23 @@ class Particle {
 
         // Destructor
         ~Particle();
+
+        // Print function
+        void print() const;
+
+        // Getters
+        std::string get_name() const;
+        double getE() const;
+        double getp_x() const;
+        double getp_y() const;
+        double getp_z() const;
+
+        // Setters
+        void set_name(std::string n); // Validates name against list of accepted SM particles
+        void setE(double E);
+        void setp_x(double p_x);
+        void setp_y(double p_y);
+        void setp_z(double p_z);
 };
 
 #endif

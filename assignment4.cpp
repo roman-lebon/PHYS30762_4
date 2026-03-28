@@ -5,7 +5,7 @@
 int main() {
     
     Particle p("electron", 100.0, 1.0, 2.0, 3.0);
-    std::cout << "Particle created\n";
+    p.print();
     return 0;
 
 }
