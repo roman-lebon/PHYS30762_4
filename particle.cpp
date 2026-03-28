@@ -24,6 +24,36 @@ Particle::~Particle() {
     std::cout << "Calling Particle destructor\n";
 }
 
+// Copy constructor - deep copy handled by FourMomentum's copy constructor
+Particle::Particle(const Particle& other) : fourmomentum(other.fourmomentum) {
+    std::cout << "Calling Particle copy constructor\n";
+    name = other.name;
+}
+
+// Copy assignment operator
+Particle& Particle::operator=(const Particle& other) {
+    std::cout << "Calling Particle copy assignment operator\n";
+    if (this != &other) { // Self-assignment check
+        name = other.name;
+        fourmomentum = other.fourmomentum; // Calls FourMomentum copy assignment operator
+    }
+    return *this;
+}
+
+// Move constructor
+Particle::Particle(Particle&& other) : fourmomentum(std::move(other.fourmomentum)) {
+    std::cout << "Calling Particle move constructor\n";
+    name = std::move(other.name);
+}
+
+// Move assignment operator
+Particle& Particle::operator=(Particle&& other) {
+    std::cout << "Calling Particle move assignment operator\n";
+    std::swap(name, other.name);
+    std::swap(fourmomentum, other.fourmomentum); // Calls FourMomentum move assignment operator
+    return *this;
+}
+
 // Print function
 void Particle::print() const {
     std::cout << "Particle: " << name << "\n";

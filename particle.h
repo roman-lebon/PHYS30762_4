@@ -20,6 +20,12 @@ class Particle {
         // Destructor
         ~Particle();
 
+        // Rule of 5 - delegates to FourMomentum's special functions which handle the raw pointer
+        Particle(const Particle& other); // Copy constructor
+        Particle& operator=(const Particle& other); // Copy assignment operator
+        Particle(Particle&& other); // Move constructor
+        Particle& operator=(Particle&& other); // Move assignment operator
+
         // Print function
         void print() const;
 
