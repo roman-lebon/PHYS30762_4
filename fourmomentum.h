@@ -38,6 +38,12 @@ class FourMomentum {
         void setp_x(double p_x);
         void setp_y(double p_y);
         void setp_z(double p_z);
+
+        // Overloaded + operator: sums two four-momenta, returns a new FourMomentum
+        FourMomentum operator+(const FourMomentum& other) const;
+
+        // Dot product using the (+,-,-,-) metric: E1*E2 - p_x1*p_x2 - p_y1*p_y2 - p_z1*p_z2
+        double dotProduct(const FourMomentum& other) const;
 };
 
 #endif

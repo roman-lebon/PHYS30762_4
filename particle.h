@@ -42,6 +42,12 @@ class Particle {
         void setp_x(double p_x);
         void setp_y(double p_y);
         void setp_z(double p_z);
+
+        // Overloaded + operator: sums the four-momenta of two particles
+        Particle operator+(const Particle& other) const;
+
+        // Dot product of two particle four-momenta
+        double dotProduct(const Particle& other) const;
 };
 
 #endif

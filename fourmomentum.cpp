@@ -85,3 +85,14 @@ void FourMomentum::setE(double E) {
 void FourMomentum::setp_x(double p_x) { (*components)[1] = p_x; } // Momentum components can be negative (direction)
 void FourMomentum::setp_y(double p_y) { (*components)[2] = p_y; }
 void FourMomentum::setp_z(double p_z) { (*components)[3] = p_z; }
+
+// Overloaded + operator - adds each component and returns a new FourMomentum
+FourMomentum FourMomentum::operator+(const FourMomentum& other) const {
+    return FourMomentum(getE() + other.getE(), getp_x() + other.getp_x(), getp_y() + other.getp_y(), getp_z() + other.getp_z());
+}
+
+// Dot product using the (+,-,-,-) metric convention
+// For a particle dotted with itself this gives m^2 (rest mass squared)
+double FourMomentum::dotProduct(const FourMomentum& other) const {
+    return getE() * other.getE() - getp_x() * other.getp_x() - getp_y() * other.getp_y() - getp_z() * other.getp_z();
+}

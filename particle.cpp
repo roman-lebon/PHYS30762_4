@@ -4,8 +4,8 @@
 
 // Vector containing valid SM particle names
 const std::vector<std::string> valid_particles {
-    "electron", "muon", "tau", "antielectron", "antimuon", "antitau", "electron neutrino", "muon neutrino", "tau neutrino",
-    "photon", "Z boson", "W boson", "Higgs boson", "up quark", "down quark", "charm quark", "strange quark", "top quark", "bottom quark"};
+    "electron", "muon", "tau", "antielectron", "antimuon", "antitau", "electron neutrino", "muon neutrino", "tau neutrino", "photon", 
+    "Z boson", "W boson", "Higgs boson", "up quark", "down quark", "charm quark", "strange quark", "top quark", "bottom quark", "combined"};
 
 // Default constructor
 Particle::Particle() : fourmomentum() {
@@ -85,4 +85,19 @@ void Particle::setE(double E) { fourmomentum.setE(E); }
 void Particle::setp_x(double p_x) { fourmomentum.setp_x(p_x); }
 void Particle::setp_y(double p_y) { fourmomentum.setp_y(p_y); }
 void Particle::setp_z(double p_z) { fourmomentum.setp_z(p_z); }
+
+// Overloaded + operator - sums the four-momenta of two particles, returns a new Particle
+Particle Particle::operator+(const Particle& other) const {
+    return Particle("combined", // placeholder name for combined system
+                    getE() + other.getE(),
+                    getp_x() + other.getp_x(),
+                    getp_y() + other.getp_y(),
+                    getp_z() + other.getp_z());
+}
+
+// Dot product - delegates to FourMomentum's dot product
+double Particle::dotProduct(const Particle& other) const {
+    return fourmomentum.dotProduct(other.fourmomentum);
+}
+
 
