@@ -91,7 +91,6 @@ FourMomentum FourMomentum::operator+(const FourMomentum& other) const {
     return FourMomentum(getE() + other.getE(), getp_x() + other.getp_x(), getp_y() + other.getp_y(), getp_z() + other.getp_z());
 }
 
-// Dot product using the (+,-,-,-) metric convention
 // For a particle dotted with itself this gives m^2 (rest mass squared)
 double FourMomentum::dotProduct(const FourMomentum& other) const {
     return getE() * other.getE() - getp_x() * other.getp_x() - getp_y() * other.getp_y() - getp_z() * other.getp_z();
