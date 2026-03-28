@@ -17,6 +17,21 @@ class FourMomentum {
 
         // Destructor
         ~FourMomentum();
+
+        // Print function
+        void print() const;
+
+        // Getters - user should not access the vector directly as internal ordering is an implementation detail
+        double getE() const;
+        double getp_x() const;
+        double getp_y() const;
+        double getp_z() const;
+
+        // Setters
+        void setE(double E); // Validates that energy is non-negative
+        void setp_x(double p_x);
+        void setp_y(double p_y);
+        void setp_z(double p_z);
 };
 
 #endif
