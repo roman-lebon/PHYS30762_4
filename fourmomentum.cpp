@@ -1,6 +1,7 @@
 #include "fourmomentum.h"
 #include <iostream>
 #include <cstdlib>
+#include <algorithm>
 
 // Default constructor
 FourMomentum::FourMomentum() {
@@ -8,9 +9,9 @@ FourMomentum::FourMomentum() {
     components = new std::vector<double>(4, 0.0); // Allocates vector and initialises all four components to zero
 }
 
-// Parameterised constructor
+// Parameterized constructor
 FourMomentum::FourMomentum(double E, double p_x, double p_y, double p_z) {
-    std::cout << "Calling FourMomentum parameterised constructor\n";
+    std::cout << "Calling FourMomentum parameterized constructor\n";
 
     if (E < 0) {
         std::cout << "-> Invalid energy: E cannot be negative.\n";
@@ -28,6 +29,36 @@ FourMomentum::FourMomentum(double E, double p_x, double p_y, double p_z) {
 FourMomentum::~FourMomentum() {
     std::cout << "Calling FourMomentum destructor\n";
     delete components; // Frees the dynamically allocated vector to prevent memory leak
+}
+
+// Copy constructor - creates a completely independent deep copy of other
+FourMomentum::FourMomentum(const FourMomentum& other) {
+    std::cout << "Calling FourMomentum copy constructor\n";
+    components = new std::vector<double>(*other.components); // Allocates new vector and copies all values across (deep copy)
+}
+
+// Copy assignment operator - replaces this object's data with a deep copy of other
+FourMomentum& FourMomentum::operator=(const FourMomentum& other) {
+    std::cout << "Calling FourMomentum copy assignment operator\n";
+    if (this != &other) { // Self-assignment check: if a = a, avoids freeing memory we still need
+        delete components; // Free existing memory before overwriting
+        components = new std::vector<double>(*other.components); // Deep copy
+    }
+    return *this; // Returns reference to this object so chained assignment (a = b = c) works
+}
+
+// Move constructor - transfers ownership of other's memory to this object without copying
+FourMomentum::FourMomentum(FourMomentum&& other) {
+    std::cout << "Calling FourMomentum move constructor\n";
+    components = other.components; // Steal the pointer - no new allocation needed
+    other.components = nullptr; // Leave other in a valid empty state so its destructor doesn't double-free
+}
+
+// Move assignment operator - transfers ownership of other's memory, replacing this object's existing data
+FourMomentum& FourMomentum::operator=(FourMomentum&& other) {
+    std::cout << "Calling FourMomentum move assignment operator\n";
+    std::swap(components, other.components); // Swap pointers - other's destructor cleans up old memory
+    return *this;
 }
 
 // Print function

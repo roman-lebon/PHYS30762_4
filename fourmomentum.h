@@ -18,6 +18,12 @@ class FourMomentum {
         // Destructor
         ~FourMomentum();
 
+        // Rule of 5 (required because we manage a raw pointer) - Without these the compiler generates shallow copies which would cause two objects to share the same pointer
+        FourMomentum(const FourMomentum& other); // Copy constructor
+        FourMomentum& operator=(const FourMomentum& other); // Copy assignment operator
+        FourMomentum(FourMomentum&& other); // Move constructor
+        FourMomentum& operator=(FourMomentum&& other); // Move assignment operator
+
         // Print function
         void print() const;
 

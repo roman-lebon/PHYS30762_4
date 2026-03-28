@@ -15,13 +15,13 @@ Particle::Particle() : fourmomentum() {
 
 // Parameterized constructor
 Particle::Particle(std::string n, double E, double p_x, double p_y, double p_z) : fourmomentum(E, p_x, p_y, p_z) {
-    std::cout << "Calling particle paramterized constructor\n";
+    std::cout << "Calling Particle parameterized constructor\n";
     set_name(n); 
 }
 
 // Destructor
 Particle::~Particle() {
-    std::cout << "Calling particle destructor\n";
+    std::cout << "Calling Particle destructor\n";
 }
 
 // Print function
